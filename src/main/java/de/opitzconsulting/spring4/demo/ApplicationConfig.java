@@ -1,5 +1,6 @@
 package de.opitzconsulting.spring4.demo;
 
+import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -41,9 +42,20 @@ public class ApplicationConfig {
         factory.setJpaVendorAdapter(vendorAdapter);
         factory.setPackagesToScan("de.opitzconsulting.spring4.demo.domain");
         factory.setDataSource(dataSource);
+        factory.setPersistenceProviderClass(HibernatePersistenceProvider.class);
+//        factory.setJpaProperties(jpaProperties());
+
         factory.afterPropertiesSet();
 
         return factory.getObject();
+    }
+
+    private Properties jpaProperties() {
+        Properties extraProperties = new Properties();
+        extraProperties.put("hibernate.format_sql", "true");
+        extraProperties.put("hibernate.show_sql", "true");
+        extraProperties.put("hibernate.hbm2ddl.auto", "create");
+        return extraProperties;
     }
 
     @Bean
