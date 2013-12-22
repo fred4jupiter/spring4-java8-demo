@@ -75,8 +75,10 @@ public class PersonFindWithJdbcTemplateTest {
     }
 
     @Test
-    public void findPersonWithShortMethodReference() {
-        jdbcTemplate.query(SQL, ps -> ps.setLong(1, person.getId()), this::mapPerson);
+    public void findPersonWithMethodReference() {
+        List<Person> personList = jdbcTemplate.query(SQL, ps -> ps.setLong(1, person.getId()), this::mapPerson);
+        assertThat(personList.size(), equalTo(1));
+        assertThat(personList.get(0), equalTo(person));
     }
 
     // RowMapper
