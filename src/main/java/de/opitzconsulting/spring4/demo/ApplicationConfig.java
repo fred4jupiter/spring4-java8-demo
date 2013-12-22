@@ -1,11 +1,12 @@
 package de.opitzconsulting.spring4.demo;
 
 import org.hibernate.jpa.HibernatePersistenceProvider;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.support.PropertiesLoaderUtils;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
@@ -18,14 +19,17 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
-import java.io.IOException;
 import java.util.Properties;
 
 @Configuration
 @ComponentScan
 @EnableJpaRepositories
+@PropertySource("classpath:/hibernate-config.properties")
 @EnableTransactionManagement
 public class ApplicationConfig {
+
+    @Autowired
+    private Environment environment;
 
     @Bean
     public DataSource dataSource() {
@@ -43,7 +47,7 @@ public class ApplicationConfig {
         factory.setPackagesToScan("de.opitzconsulting.spring4.demo.domain");
         factory.setDataSource(dataSource);
         factory.setPersistenceProviderClass(HibernatePersistenceProvider.class);
-//        factory.setJpaProperties(jpaProperties());
+        factory.setJpaProperties(jpaProperties());
 
         factory.afterPropertiesSet();
 
@@ -53,8 +57,8 @@ public class ApplicationConfig {
     private Properties jpaProperties() {
         Properties extraProperties = new Properties();
         extraProperties.put("hibernate.format_sql", "true");
-        extraProperties.put("hibernate.show_sql", "true");
-        extraProperties.put("hibernate.hbm2ddl.auto", "create");
+        extraProperties.put("hibernate.show_sql", environment.getProperty("hibernate.show_sql"));
+        extraProperties.put("hibernate.hbm2ddl.auto", environment.getProperty("hibernate.hbm2ddl.auto"));
         return extraProperties;
     }
 
