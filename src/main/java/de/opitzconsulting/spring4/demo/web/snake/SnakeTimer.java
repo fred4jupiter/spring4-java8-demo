@@ -37,8 +37,7 @@ public class SnakeTimer {
 
     private static final long TICK_DELAY = 100;
 
-    private static final ConcurrentHashMap<Integer, Snake> snakes =
-            new ConcurrentHashMap<Integer, Snake>();
+    private static final ConcurrentHashMap<Integer, Snake> snakes = new ConcurrentHashMap<Integer, Snake>();
 
     public static synchronized void addSnake(Snake snake) {
         if (snakes.size() == 0) {
@@ -47,11 +46,9 @@ public class SnakeTimer {
         snakes.put(Integer.valueOf(snake.getId()), snake);
     }
 
-
     public static Collection<Snake> getSnakes() {
         return Collections.unmodifiableCollection(snakes.values());
     }
-
 
     public static synchronized void removeSnake(Snake snake) {
         snakes.remove(Integer.valueOf(snake.getId()));
@@ -60,11 +57,9 @@ public class SnakeTimer {
         }
     }
 
-
     public static void tick() throws Exception {
         StringBuilder sb = new StringBuilder();
-        for (Iterator<Snake> iterator = SnakeTimer.getSnakes().iterator();
-                iterator.hasNext();) {
+        for (Iterator<Snake> iterator = SnakeTimer.getSnakes().iterator(); iterator.hasNext(); ) {
             Snake snake = iterator.next();
             snake.update(SnakeTimer.getSnakes());
             sb.append(snake.getLocationsJson());
@@ -72,8 +67,7 @@ public class SnakeTimer {
                 sb.append(',');
             }
         }
-        broadcast(String.format("{'type': 'update', 'data' : [%s]}",
-                sb.toString()));
+        broadcast(String.format("{'type': 'update', 'data' : [%s]}", sb.toString()));
     }
 
     public static void broadcast(String message) throws Exception {
@@ -81,7 +75,6 @@ public class SnakeTimer {
             snake.sendMessage(message);
         }
     }
-
 
     public static void startTimer() {
         gameTimer = new Timer(SnakeTimer.class.getSimpleName() + " Timer");
@@ -96,7 +89,6 @@ public class SnakeTimer {
             }
         }, TICK_DELAY, TICK_DELAY);
     }
-
 
     public static void stopTimer() {
         if (gameTimer != null) {

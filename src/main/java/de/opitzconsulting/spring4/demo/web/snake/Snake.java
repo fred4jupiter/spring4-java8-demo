@@ -23,7 +23,6 @@ import java.util.Deque;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 
-
 public class Snake {
 
     private static final int DEFAULT_LENGTH = 5;
@@ -61,9 +60,8 @@ public class Snake {
         sendMessage("{'type': 'kill'}");
     }
 
-
     protected void sendMessage(String msg) throws Exception {
-    	session.sendMessage(new TextMessage(msg));
+        session.sendMessage(new TextMessage(msg));
     }
 
     public synchronized void update(Collection<Snake> snakes) throws Exception {
@@ -118,15 +116,12 @@ public class Snake {
 
     public synchronized String getLocationsJson() {
         StringBuilder sb = new StringBuilder();
-        sb.append(String.format("{x: %d, y: %d}",
-                Integer.valueOf(head.x), Integer.valueOf(head.y)));
+        sb.append(String.format("{x: %d, y: %d}", Integer.valueOf(head.x), Integer.valueOf(head.y)));
         for (Location location : tail) {
             sb.append(',');
-            sb.append(String.format("{x: %d, y: %d}",
-                    Integer.valueOf(location.x), Integer.valueOf(location.y)));
+            sb.append(String.format("{x: %d, y: %d}", Integer.valueOf(location.x), Integer.valueOf(location.y)));
         }
-        return String.format("{'id':%d,'body':[%s]}",
-                Integer.valueOf(id), sb.toString());
+        return String.format("{'id':%d,'body':[%s]}", Integer.valueOf(id), sb.toString());
     }
 
     public int getId() {

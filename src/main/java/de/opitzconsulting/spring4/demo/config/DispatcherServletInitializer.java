@@ -4,6 +4,9 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 
 import javax.servlet.ServletRegistration.Dynamic;
 
+/**
+ * This class substitutes the web.xml. So you don´t need a web.xml anymore.
+ */
 public class DispatcherServletInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
     @Override
