@@ -1,5 +1,6 @@
 package de.opitzconsulting.spring4.demo;
 
+import de.opitzconsulting.spring4.demo.config.ApplicationConfig;
 import de.opitzconsulting.spring4.demo.domain.Person;
 import de.opitzconsulting.spring4.demo.repository.PersonRepository;
 import org.junit.Before;

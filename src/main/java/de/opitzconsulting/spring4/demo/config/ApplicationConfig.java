@@ -1,4 +1,4 @@
-package de.opitzconsulting.spring4.demo;
+package de.opitzconsulting.spring4.demo.config;
 
 import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +22,8 @@ import javax.sql.DataSource;
 import java.util.Properties;
 
 @Configuration
-@ComponentScan
-@EnableJpaRepositories
+//@ComponentScan(basePackages = {"de.opitzconsulting.spring4.demo.repository"})
+@EnableJpaRepositories(basePackages = "de.opitzconsulting.spring4.demo.repository")
 @PropertySource("classpath:/hibernate-config.properties")
 @EnableTransactionManagement
 public class ApplicationConfig {

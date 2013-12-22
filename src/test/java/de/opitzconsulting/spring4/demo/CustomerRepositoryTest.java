@@ -1,5 +1,6 @@
 package de.opitzconsulting.spring4.demo;
 
+import de.opitzconsulting.spring4.demo.config.ApplicationConfig;
 import de.opitzconsulting.spring4.demo.domain.Customer;
 import de.opitzconsulting.spring4.demo.repository.CustomerRepository;
 import org.junit.Test;
