@@ -1,8 +1,7 @@
-package de.opitzconsulting.spring4.demo;
+package de.opitzconsulting.spring4.demo.repository;
 
 import de.opitzconsulting.spring4.demo.config.ApplicationConfig;
 import de.opitzconsulting.spring4.demo.domain.Customer;
-import de.opitzconsulting.spring4.demo.repository.CustomerRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;

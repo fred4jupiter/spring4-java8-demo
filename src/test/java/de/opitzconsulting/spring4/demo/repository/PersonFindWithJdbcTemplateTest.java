@@ -1,8 +1,7 @@
-package de.opitzconsulting.spring4.demo;
+package de.opitzconsulting.spring4.demo.repository;
 
 import de.opitzconsulting.spring4.demo.config.ApplicationConfig;
 import de.opitzconsulting.spring4.demo.domain.Person;
-import de.opitzconsulting.spring4.demo.repository.PersonRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
