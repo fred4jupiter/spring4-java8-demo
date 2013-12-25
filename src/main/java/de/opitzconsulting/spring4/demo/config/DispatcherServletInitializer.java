@@ -1,5 +1,7 @@
 package de.opitzconsulting.spring4.demo.config;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import javax.servlet.ServletRegistration.Dynamic;
@@ -9,6 +11,8 @@ import javax.servlet.ServletRegistration.Dynamic;
  */
 public class DispatcherServletInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
+    private static final Logger LOG = LoggerFactory.getLogger(DispatcherServletInitializer.class);
+
     @Override
     protected Class<?>[] getRootConfigClasses() {
         return null;
@@ -16,6 +20,7 @@ public class DispatcherServletInitializer extends AbstractAnnotationConfigDispat
 
     @Override
     protected Class<?>[] getServletConfigClasses() {
+        LOG.info("registring class WebConfig");
         return new Class<?>[]{WebConfig.class};
     }
 
