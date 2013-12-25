@@ -6,6 +6,7 @@ import org.apache.activemq.command.ActiveMQQueue;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jms.connection.CachingConnectionFactory;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.listener.SimpleMessageListenerContainer;
 import org.springframework.jms.listener.adapter.MessageListenerAdapter;
@@ -26,13 +27,13 @@ public class JmsConfig {
         return factory;
     }
 
-//    @Bean
-//    ConnectionFactory cachedConnectionFactory() {
-//        CachingConnectionFactory cachingConnectionFactory = new CachingConnectionFactory();
-//        cachingConnectionFactory.setTargetConnectionFactory(connectionFactory());
-//        cachingConnectionFactory.setSessionCacheSize(10);
-//        return cachingConnectionFactory;
-//    }
+    @Bean
+    ConnectionFactory cachedConnectionFactory() {
+        CachingConnectionFactory cachingConnectionFactory = new CachingConnectionFactory();
+        cachingConnectionFactory.setTargetConnectionFactory(connectionFactory());
+        cachingConnectionFactory.setSessionCacheSize(10);
+        return cachingConnectionFactory;
+    }
 
     @Bean
     Destination destinationQueue() {
@@ -42,7 +43,7 @@ public class JmsConfig {
     @Bean
     JmsTemplate jmsTemplate() {
         JmsTemplate jmsTemplate = new JmsTemplate();
-        jmsTemplate.setConnectionFactory(connectionFactory());
+        jmsTemplate.setConnectionFactory(cachedConnectionFactory());
         jmsTemplate.setDefaultDestination(destinationQueue());
         return jmsTemplate;
     }
@@ -57,11 +58,11 @@ public class JmsConfig {
     }
 
     @Bean
-    SimpleMessageListenerContainer container(final MessageListenerAdapter messageListener, final ConnectionFactory connectionFactory) {
+    SimpleMessageListenerContainer container(final MessageListenerAdapter messageListener, final ConnectionFactory cachedConnectionFactory) {
         return new SimpleMessageListenerContainer() {
             {
                 setMessageListener(messageListener);
-                setConnectionFactory(connectionFactory);
+                setConnectionFactory(cachedConnectionFactory);
                 setDestination(destinationQueue());
                 setPubSubDomain(true);
             }

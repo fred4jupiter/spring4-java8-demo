@@ -5,10 +5,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.stereotype.Component;
-import org.springframework.util.FileSystemUtils;
 
-import java.io.File;
-
+/**
+ * NOTE: The @JmsListener message receiving is not yet implemented
+ *
+ * @see https://jira.springsource.org/browse/SPR-9882
+ */
 @Component
 public class Receiver {
 
