@@ -22,7 +22,7 @@ import javax.sql.DataSource;
 import java.util.Properties;
 
 @Configuration
-//@ComponentScan(basePackages = {"de.opitzconsulting.spring4.demo.repository"})
+@ComponentScan(basePackages = {"de.opitzconsulting.spring4.demo.service"})
 @EnableJpaRepositories(basePackages = "de.opitzconsulting.spring4.demo.repository")
 @PropertySource("classpath:/hibernate-config.properties")
 @EnableTransactionManagement
