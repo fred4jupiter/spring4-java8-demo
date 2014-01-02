@@ -3,6 +3,7 @@ package de.opitzconsulting.spring4.demo.config;
 
 import de.opitzconsulting.spring4.demo.web.echo.EchoWebSocketHandler;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -14,6 +15,7 @@ import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry
 
 @Configuration
 @EnableWebMvc
+@ComponentScan(basePackages = "de.opitzconsulting.spring4.demo.web")
 @EnableWebSocket
 public class WebConfig extends WebMvcConfigurerAdapter implements WebSocketConfigurer {
 
