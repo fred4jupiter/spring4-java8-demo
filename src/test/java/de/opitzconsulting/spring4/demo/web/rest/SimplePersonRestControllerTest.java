@@ -1,4 +1,4 @@
-package de.opitzconsulting.spring4.demo.web;
+package de.opitzconsulting.spring4.demo.web.rest;
 
 import de.opitzconsulting.spring4.demo.config.WebConfig;
 import de.opitzconsulting.spring4.demo.domain.Person;

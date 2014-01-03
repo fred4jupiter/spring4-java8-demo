@@ -1,6 +1,6 @@
 package de.opitzconsulting.spring4.demo.config;
 
-import de.opitzconsulting.spring4.demo.web.echo.EchoWebSocketHandler;
+import de.opitzconsulting.spring4.demo.web.websocket.EchoServerEndpointWebSocketHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -24,7 +24,7 @@ public class WebSocketConfig extends WebMvcConfigurerAdapter implements WebSocke
 
     @Bean
     public WebSocketHandler echoWebSocketHandler() {
-        return new EchoWebSocketHandler();
+        return new EchoServerEndpointWebSocketHandler();
     }
 
     // Allow serving HTML files through the default Servlet

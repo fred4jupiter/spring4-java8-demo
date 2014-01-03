@@ -158,6 +158,21 @@
             <artifactId>spring-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <!-- Jetty 9.1 Native WebSocket implementation -->
+
+        <dependency>
+            <groupId>org.eclipse.jetty.websocket</groupId>
+            <artifactId>websocket-client</artifactId>
+            <version>9.1.0.v20131115</version>
+        </dependency>
+
+        <!-- Jetty 9.1 JSR 356 implementation -->
+        <dependency>
+            <groupId>org.eclipse.jetty.websocket</groupId>
+            <artifactId>javax-websocket-client-impl</artifactId>
+            <version>9.1.0.v20131115</version>
+        </dependency>
+
         <!--NOTE: version 4.2.2 does not work with Spring 4, because of javassist incompatibility -->
         <dependency>
             <groupId>org.hibernate</groupId>
