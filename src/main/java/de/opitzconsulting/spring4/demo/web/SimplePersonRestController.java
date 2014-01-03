@@ -7,9 +7,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.PostConstruct;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @RestController
 public class SimplePersonRestController {
@@ -18,6 +21,12 @@ public class SimplePersonRestController {
 
     @Autowired
     private PersonRepository personRepository;
+
+    @RequestMapping(value = "/ping", method = RequestMethod.GET)
+    public String ping() {
+        return "up and running";
+//        return LocalDateTime.now().toString();
+    }
 
     @RequestMapping(value = "/person/{id}")
     public Person findPersonById(@PathVariable Long id) {
