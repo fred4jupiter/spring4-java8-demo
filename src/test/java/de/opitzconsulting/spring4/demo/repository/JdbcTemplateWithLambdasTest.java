@@ -20,7 +20,7 @@ import static org.junit.Assert.assertThat;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = ApplicationConfig.class)
-public class PersonFindWithJdbcTemplateTest {
+public class JdbcTemplateWithLambdasTest {
 
     @Autowired
     private PersonRepository personRepository;
@@ -81,7 +81,7 @@ public class PersonFindWithJdbcTemplateTest {
         assertThat(personList.get(0), equalTo(person));
     }
 
-    // RowMapper
+    // RowMapper called by method reference
     private Person mapPerson(ResultSet rs, int rowNum) throws SQLException {
         return new Person(rs.getLong("id"), rs.getString("first_name"), rs.getString("last_name"));
     }
