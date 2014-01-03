@@ -11,6 +11,7 @@ import org.springframework.web.socket.WebSocketHandler;
 import org.springframework.web.socket.config.annotation.EnableWebSocket;
 import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
 import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry;
+import org.springframework.web.socket.handler.PerConnectionWebSocketHandler;
 
 @Configuration
 @EnableWebSocket
@@ -26,7 +27,10 @@ public class WebSocketConfig extends WebMvcConfigurerAdapter implements WebSocke
 
     @Bean
     public WebSocketHandler echoWebSocketHandler() {
-        return new EchoServerEndpointWebSocketHandler();
+//        return new EchoServerEndpointWebSocketHandler();
+
+        // stateful per session handler
+        return new PerConnectionWebSocketHandler(EchoServerEndpointWebSocketHandler.class);
     }
 
     // Allow serving HTML files through the default Servlet
