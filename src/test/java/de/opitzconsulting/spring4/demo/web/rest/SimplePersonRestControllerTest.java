@@ -48,13 +48,17 @@ public class SimplePersonRestControllerTest {
 
     @Test
     public void callRestServiceForPerson() throws JsonProcessingException {
-        ObjectMapper mapper = new ObjectMapper();
         final Person person = new Person(Long.valueOf(1), "Fred", "Feuerstein");
-        String personAsJson = mapper.writeValueAsString(person);
+        String personAsJson = getJsonFromPerson(person);
         mockServer.expect(requestTo("/person/1")).andRespond(withSuccess(personAsJson, MediaType.APPLICATION_JSON));
-        ResponseEntity<Person> personEntity = restTemplate.getForEntity("/person/1", Person.class);
+        ResponseEntity<Person> personEntity = restTemplate.getForEntity("/person/{id}", Person.class, 1);
         mockServer.verify();
         Person returnedPerson = personEntity.getBody();
         assertThat(returnedPerson, equalTo(person));
+    }
+
+    private String getJsonFromPerson(Person person) throws JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.writeValueAsString(person);
     }
 }
