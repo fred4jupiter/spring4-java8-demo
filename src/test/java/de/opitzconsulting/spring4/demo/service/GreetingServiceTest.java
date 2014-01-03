@@ -1,6 +1,6 @@
 package de.opitzconsulting.spring4.demo.service;
 
-import de.opitzconsulting.spring4.demo.config.ApplicationConfig;
+import de.opitzconsulting.spring4.demo.config.AppConfig;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +11,7 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.springframework.test.util.MatcherAssertionErrors.assertThat;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = ApplicationConfig.class)
+@ContextConfiguration(classes = AppConfig.class)
 public class GreetingServiceTest {
 
     @Autowired

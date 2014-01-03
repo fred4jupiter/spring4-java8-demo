@@ -1,6 +1,6 @@
 package de.opitzconsulting.spring4.demo.repository;
 
-import de.opitzconsulting.spring4.demo.config.ApplicationConfig;
+import de.opitzconsulting.spring4.demo.config.AppConfig;
 import de.opitzconsulting.spring4.demo.domain.Person;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,7 +12,7 @@ import org.springframework.transaction.support.TransactionCallback;
 import org.springframework.transaction.support.TransactionTemplate;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = ApplicationConfig.class)
+@ContextConfiguration(classes = AppConfig.class)
 public class TransactionTemplateWithLambdasTest {
 
     @Autowired

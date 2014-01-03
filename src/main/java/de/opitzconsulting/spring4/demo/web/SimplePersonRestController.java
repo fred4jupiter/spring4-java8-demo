@@ -10,10 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.PostConstruct;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
 @RestController
 public class SimplePersonRestController {
 
@@ -25,7 +21,6 @@ public class SimplePersonRestController {
     @RequestMapping(value = "/ping", method = RequestMethod.GET)
     public String ping() {
         return "up and running";
-//        return LocalDateTime.now().toString();
     }
 
     @RequestMapping(value = "/person/{id}")
@@ -34,14 +29,4 @@ public class SimplePersonRestController {
         return personRepository.findOne(id);
     }
 
-    @PostConstruct
-    public void populateSomePersonsAtStartup() {
-        Person person1 = new Person("Fred", "Feuerstein");
-        personRepository.saveAndFlush(person1);
-        LOG.info("populating person: {}", person1);
-
-        Person person2 = new Person("Wilma", "Feuerstein");
-        personRepository.saveAndFlush(person2);
-        LOG.info("populating person: {}", person2);
-    }
 }

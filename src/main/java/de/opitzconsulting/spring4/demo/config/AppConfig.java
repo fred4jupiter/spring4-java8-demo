@@ -28,7 +28,7 @@ import java.util.Properties;
 @PropertySource("classpath:/hibernate-config.properties")
 @EnableTransactionManagement
 @EnableScheduling
-public class ApplicationConfig {
+public class AppConfig {
 
     @Autowired
     private Environment environment;
