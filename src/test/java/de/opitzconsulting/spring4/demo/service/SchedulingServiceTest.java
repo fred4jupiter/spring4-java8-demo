@@ -9,7 +9,10 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 public class SchedulingServiceTest {
 
     public static void main(String[] args) {
-        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ApplicationConfig.class);
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+        context.getEnvironment().setActiveProfiles("scheduling");
+        context.register(ApplicationConfig.class);
+        context.refresh();
         // NOTE: we don´t need to call the method on SchedulingService, because Spring will trigger it repeatedly
     }
 }
