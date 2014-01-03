@@ -1,9 +1,10 @@
 
 package de.opitzconsulting.spring4.demo.config;
 
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
+import de.opitzconsulting.spring4.demo.repository.PersonRepository;
+import de.opitzconsulting.spring4.demo.web.rest.DemoDataPopulator;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.*;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @Configuration
@@ -12,4 +13,12 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @Import(AppConfig.class)
 public class WebConfig {
 
+    @Autowired
+    private PersonRepository personRepository;
+
+    @Bean
+    @Conditional(RunningInJettyCondition.class)
+    public DemoDataPopulator demoDataPopulator() {
+        return new DemoDataPopulator(personRepository);
+    }
 }

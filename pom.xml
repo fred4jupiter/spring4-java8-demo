@@ -41,6 +41,12 @@
                     <webApp>
                         <contextPath>/${project.artifactId}</contextPath>
                     </webApp>
+                    <systemProperties>
+                        <systemProperty>
+                            <name>spring.profiles.active</name>
+                            <value>jetty</value>
+                        </systemProperty>
+                    </systemProperties>
                 </configuration>
                 <dependencies>
                     <!-- To avoid uncompatibility in ASM 4.x -->
