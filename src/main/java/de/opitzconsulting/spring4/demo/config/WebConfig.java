@@ -9,7 +9,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = "de.opitzconsulting.spring4.demo.web")
+@ComponentScan(basePackages = "de.opitzconsulting.spring4.demo.web.rest")
 @Import(AppConfig.class)
 public class WebConfig {
 

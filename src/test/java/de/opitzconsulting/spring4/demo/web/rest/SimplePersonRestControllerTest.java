@@ -1,5 +1,7 @@
 package de.opitzconsulting.spring4.demo.web.rest;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import de.opitzconsulting.spring4.demo.config.WebConfig;
 import de.opitzconsulting.spring4.demo.domain.Person;
 import org.junit.Before;
@@ -45,11 +47,14 @@ public class SimplePersonRestControllerTest {
     }
 
     @Test
-    public void callRestServiceForPerson() {
-        mockServer.expect(requestTo("/person/1")).andRespond(withSuccess("{\"id\":1,\"firstname\":\"Fred\",\"lastname\":\"Feuerstein\"}", MediaType.APPLICATION_JSON));
+    public void callRestServiceForPerson() throws JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
+        final Person person = new Person(Long.valueOf(1), "Fred", "Feuerstein");
+        String personAsJson = mapper.writeValueAsString(person);
+        mockServer.expect(requestTo("/person/1")).andRespond(withSuccess(personAsJson, MediaType.APPLICATION_JSON));
         ResponseEntity<Person> personEntity = restTemplate.getForEntity("/person/1", Person.class);
         mockServer.verify();
-        Person person = personEntity.getBody();
-        assertThat(person, notNullValue());
+        Person returnedPerson = personEntity.getBody();
+        assertThat(returnedPerson, equalTo(person));
     }
 }
