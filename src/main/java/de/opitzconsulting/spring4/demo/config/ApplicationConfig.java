@@ -1,7 +1,6 @@
 package de.opitzconsulting.spring4.demo.config;
 
 import de.opitzconsulting.spring4.demo.service.SchedulingService;
-import de.opitzconsulting.spring4.demo.service.SystemPropertyService;
 import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.*;
