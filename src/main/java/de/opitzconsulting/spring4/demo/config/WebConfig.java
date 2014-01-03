@@ -5,6 +5,7 @@ import de.opitzconsulting.spring4.demo.repository.PersonRepository;
 import de.opitzconsulting.spring4.demo.web.rest.DemoDataPopulator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.*;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @Configuration
@@ -20,5 +21,10 @@ public class WebConfig {
     @Conditional(RunningInJettyCondition.class)
     public DemoDataPopulator demoDataPopulator() {
         return new DemoDataPopulator(personRepository);
+    }
+
+    @Bean
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
     }
 }
