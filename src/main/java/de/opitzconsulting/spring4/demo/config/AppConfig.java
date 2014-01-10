@@ -19,7 +19,6 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.support.TransactionTemplate;
 
-import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.util.Properties;
 
@@ -37,6 +36,13 @@ public class AppConfig {
     @Bean
     @Description("This is the dataSource of embedded H2 database")
     public DataSource dataSource() {
+//        SimpleDriverDataSource simpleDriverDataSource = new SimpleDriverDataSource();
+//        simpleDriverDataSource.setDriverClass(Driver.class);
+//        simpleDriverDataSource.setUrl("jdbc:h2:mem:test;MODE=Oracle;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE");
+//        simpleDriverDataSource.setUsername("sa");
+//        simpleDriverDataSource.setPassword("");
+//        return simpleDriverDataSource;
+
         return new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.H2).build();
     }
 
