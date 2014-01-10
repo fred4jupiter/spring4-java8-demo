@@ -13,7 +13,7 @@ import java.lang.annotation.Target;
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Service
-@Transactional
+@Transactional(rollbackFor = Exception.class)
 public @interface MyTransactionalService {
     String[] value() default "";
 
