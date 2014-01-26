@@ -36,12 +36,20 @@
             <plugin>
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
-                <version>9.0.6.v20130930</version>
+                <version>9.1.1.v20140108</version>
                 <configuration>
                     <webApp>
                         <contextPath>/${project.artifactId}</contextPath>
                     </webApp>
                 </configuration>
+                <!-- This is necessary because of the Jetty 9 JDK 8 issues: see http://vaskoz.wordpress.com/2013/12/18/fix-jetty-9-1-for-jdk8-annotations -->
+                <dependencies>
+                    <dependency>
+                        <groupId>org.ow2.asm</groupId>
+                        <artifactId>asm</artifactId>
+                        <version>5.0_BETA</version>
+                    </dependency>
+                </dependencies>
             </plugin>
         </plugins>
     </build>
