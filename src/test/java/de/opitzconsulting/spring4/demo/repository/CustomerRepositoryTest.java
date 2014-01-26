@@ -1,6 +1,6 @@
 package de.opitzconsulting.spring4.demo.repository;
 
-import de.opitzconsulting.spring4.demo.config.ApplicationConfig;
+import de.opitzconsulting.spring4.demo.config.AppConfig;
 import de.opitzconsulting.spring4.demo.domain.Customer;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,11 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = ApplicationConfig.class)
+@ContextConfiguration(classes = AppConfig.class)
 public class CustomerRepositoryTest {
 
     private static final Logger LOG = LoggerFactory.getLogger(CustomerRepositoryTest.class);

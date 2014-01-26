@@ -5,7 +5,12 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 public class JmsTest {
 
+    static {
+        System.setProperty("activemq.store.dir", "d://Temp1");
+    }
+
     public static void main(String[] args) throws InterruptedException {
+        System.setProperty("activemq.store.dir", "d://Temp1");
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(JmsConfig.class);
 
         Sender sender = context.getBean(Sender.class);
