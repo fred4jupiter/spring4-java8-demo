@@ -15,18 +15,18 @@ import static org.springframework.test.util.MatcherAssertionErrors.assertThat;
 public class GreetingServiceTest {
 
     @Autowired
-    private GreetingService<GoodMorning> morningService;
+    private GreetingService<GoodMorning> goodMorningService;
 
     @Autowired
-    private GreetingService<GoodEvening> eveningService;
+    private GreetingService<GoodEvening> goodEveningService;
 
     @Test
     public void checkMorningGreeting() {
-        assertThat(morningService.getGreeting().getText(), equalTo("Good Morning"));
+        assertThat(goodMorningService.getGreeting().getText(), equalTo("Good Morning"));
     }
 
     @Test
     public void checkEveningGreeting() {
-        assertThat(eveningService.getGreeting().getText(), equalTo("Good Evening"));
+        assertThat(goodEveningService.getGreeting().getText(), equalTo("Good Evening"));
     }
 }
